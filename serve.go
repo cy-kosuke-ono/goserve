@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
+// Person .. For Generate JSON
 type Person struct {
 	Name   string `json:"name"`
 	Status int    `json:"status"`
@@ -55,7 +56,11 @@ func main() {
 	if err != nil {
 		e.Logger.Fatal(err)
 	}
-	defer fp.Close()
+	defer func() {
+		if err := fp.Close(); err != nil {
+			e.Logger.Fatal(err)
+		}
+	}()
 
 	e.Use(middleware.Recover())
 	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
