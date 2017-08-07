@@ -1,0 +1,11 @@
+[Unit]
+Description = Simple Golang WebServer
+
+[Service]
+ExecStart = /usr/local/bin/goserve
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
+
