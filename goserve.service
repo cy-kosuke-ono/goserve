@@ -2,7 +2,7 @@
 Description = Simple Golang WebServer
 
 [Service]
-ExecStart = /usr/local/bin/goserve
+ExecStart = /usr/local/bin/goserve -l /var/log/goserve/access_log -p 80
 Restart = always
 Type = simple
 
