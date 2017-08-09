@@ -31,16 +31,45 @@ func router(e *echo.Echo) {
 `
 
 	e.GET("/", func(c echo.Context) error {
+		return c.Redirect(http.StatusSeeOther, "/hello")
+	})
+	e.HEAD("/", func(c echo.Context) error {
+		return c.Redirect(http.StatusSeeOther, "/hello")
+	})
+
+	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World")
 	})
+	e.HEAD("/hello", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
+
 	e.GET("/teapod", func(c echo.Context) error {
 		return c.String(http.StatusTeapot, teapod)
 	})
+	e.HEAD("/teapod", func(c echo.Context) error {
+		return c.NoContent(http.StatusTeapot)
+	})
+
 	e.GET("/hello/:name", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, "+c.Param("name"))
 	})
+	e.HEAD("/hello/:name", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
+
 	e.GET("/hello/:name/json", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, &Person{c.Param("name"), http.StatusOK})
+		return c.JSONPretty(http.StatusOK, &Person{c.Param("name"), http.StatusOK}, "  ")
+	})
+	e.HEAD("/hello/:name/json", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
+
+	e.GET("/route", func(c echo.Context) error {
+		return c.JSONPretty(http.StatusOK, e.Routes(), "  ")
+	})
+	e.HEAD("/route", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
 	})
 }
 

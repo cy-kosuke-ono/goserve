@@ -15,3 +15,7 @@
 
 # Golang vendoring directory
 vendor/
+
+# User definition
+goserve
+access.log
