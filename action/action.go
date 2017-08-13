@@ -14,9 +14,19 @@ func New() Action {
 	return Action{}
 }
 
-func (a Action) ToPlain(str string) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		return c.String(http.StatusOK, str)
+func (a Action) ToPlain(i interface{}) echo.HandlerFunc {
+	switch str := i.(type) {
+	case string:
+		return func(c echo.Context) error {
+			return c.String(http.StatusOK, str)
+		}
+	default:
+		return func(c echo.Context) error {
+			return echo.NewHTTPError(
+				http.StatusInternalServerError,
+				"Cannot convert to string.",
+			)
+		}
 	}
 }
 
