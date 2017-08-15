@@ -158,3 +158,23 @@ func TestHelloWithNameJSONHandler(t *testing.T) {
 		assert.Equal(expected, actual)
 	}
 }
+
+// TODO: echo.NewHttpError should be 500, but return 200
+// func TestToPlainTypeAssertFail(t *testing.T) {
+// 	c := NewHttpGetTest()
+// 	c.h = New().ToPlain(1)
+// 	c.req.Header.Set(
+// 		echo.HeaderContentType,
+// 		echo.MIMETextPlain,
+// 	)
+// 	c.UpdateContext()
+//
+// 	if assert.Error(t, c.h(c.ctx)) {
+// 		assert.Equal(
+// 			t,
+// 			http.StatusInternalServerError,
+// 			c.rec.Code,
+// 		)
+// 	}
+// }
+

@@ -16,4 +16,5 @@ func Router(e *echo.Echo) {
 	e.Match(methods, "/hello/:name/json", render.HelloWithNameJSON())
 	e.Match(methods, "/teapod", render.Teapod())
 	e.Match(methods, "/route", render.ToJSON(e.Routes()))
+	e.Match(methods, "/error", render.ToPlain(1))
 }
