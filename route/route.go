@@ -1,4 +1,4 @@
-package main
+package route
 
 import (
 	"github.com/cy-kosuke-ono/goserve/action"

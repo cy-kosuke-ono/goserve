@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/cy-kosuke-ono/goserve/base"
+	"github.com/cy-kosuke-ono/goserve/route"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )
@@ -17,7 +18,7 @@ func main() {
 		Output: base.LogFileFd,
 	}))
 
-	Router(e)
+	route.Router(e)
 
 	e.Logger.Fatal(e.Start(":" + *base.Port))
 }
