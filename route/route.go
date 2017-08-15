@@ -7,14 +7,14 @@ import (
 
 func Router(e *echo.Echo) {
 	render := action.New()
+	defer RouteRouter(e, render)
 
+	RootRouter(e, render)
+	HelloRouter(e, render)
+	TrivialRouter(e, render)
+}
+
+func RouteRouter(e *echo.Echo, a action.Action) {
 	methods := []string{"GET", "HEAD"}
-
-	e.Match(methods, "/", render.Hello())
-	e.Match(methods, "/hello", render.Hello())
-	e.Match(methods, "/hello/:name", render.HelloWithName())
-	e.Match(methods, "/hello/:name/json", render.HelloWithNameJSON())
-	e.Match(methods, "/teapod", render.Teapod())
 	e.Match(methods, "/route", render.ToJSON(e.Routes()))
-	e.Match(methods, "/error", render.ToPlain(1))
 }
