@@ -16,5 +16,5 @@ func Router(e *echo.Echo) {
 
 func RouteRouter(e *echo.Echo, a action.Action) {
 	methods := []string{"GET", "HEAD"}
-	e.Match(methods, "/route", render.ToJSON(e.Routes()))
+	e.Match(methods, "/route", a.ToJSON(e.Routes()))
 }
